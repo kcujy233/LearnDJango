@@ -1,0 +1,47 @@
+'''前端引入和HTML标签'''
+- 前端开发：HTML、CSS、Javascript
+- Web框架：接受请求并处理
+- MySQL数据库
+入门：基于FLASK框架搭建网站
+深入：基于Django框架
+一、头部信息<head></head>
+1.编码：<meta charset="UTF-8">
+2.标签页的表头：<title>Title</title>
+二、页面信息<body></body>
+1.标题标签：<h>标题</h>
+2.内容标签
+<div>内容</div>：一部分内容占据一整行，结尾默认回车，块级标签
+<span>内容</span>：有多大占多少，可以拼接不同span标签的内容，行内标签
+3.超链接：<a href=url>点击跳转</a>
+调换其他网站需要完整url
+跳转本地网站省略自己的ip地址，输入"/show/info"
+<a href=url target="_blank">点击跳转</a>，跳转新的标签页
+4.图片标签： <img src="图片地址"/>（自闭和标签）
+显示自己的图片：
+- 在项目中创建"/static/"目录，图片要存放在此目录下
+- 在页面上引入<img src="/static/xxx.png">
+- 设置宽高 <img style="height:100px" src="">，设置一个维度会等比例缩放
+  <img style="height:100px; width=100px" src="">
+  <img style="width=10%" src="">，百分比缩放
+- 可以将img嵌套在a里实现图片超链接跳转
+5.列表标签
+<ul> '无序列表'
+    <li></li>
+    <li></li>
+    <li></li>
+</ul>
+<ol> '有序列表'
+    <li></li>
+    <li></li>
+    <li></li>
+
+</ol>
+6.表格标签
+<table boder="1"> 'boder表示加上边框'
+    <thead> '表头'
+        <tr>  <th> </th>  </tr> 'tr表示一行'，'th表示这一行某一列的内容'
+    </thead>
+    <tbody>
+        <tr>  <td> </td>  </tr>
+    </tbody>
+</table>

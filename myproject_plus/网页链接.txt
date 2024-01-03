@@ -1,0 +1,3 @@
+运行：python manage.py runserver
+
+http://localhost:8000/crawler_app/xitong_li/2/

@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <style>
+    body {
+      background-color: #f2f9f2;
+      font-family: Arial, sans-serif;
+      margin: 20px;
+    }
+
+    form {
+      margin-bottom: 20px;
+    }
+
+    select, input[type="submit"] {
+      padding: 10px;
+      font-size: 16px;
+    }
+
+    p {
+      line-height: 1.5;
+    }
+
+    h2 {
+      margin-top: 30px;
+    }
+
+    img {
+      max-width: 100%;
+      margin-bottom: 20px;
+    }
+  </style>
+</head>
+<body>
+
+  <h2>究极无敌大作业(老师考研党求手下留情&#x1F600;&#x2764;&#x2764;)</h2>
+  <p style="font-size: 20px; color: purple;">李晞彤</p>
+  <p style="font-size: 15px; color: purple;">2020211043051
+  </p>
+  {% load static %}
+
+  <p style="font-size: 20px; color: red;">该网页的结果为针对上个界面所选择的页码进行数据的抓取和分析。</p>
+
+  <h2>企业对学历的要求</h2>
+  <img src="{% static 'qual_pie_chart_select.png' %}" alt="Qualification Chart">
+  <p>上图是实时获取第n页数据的结果，通过少量数据可以与之产生对比。</p>
+
+  <h2>最低薪资占比</h2>
+  <img src="{% static 'salary_pie_chart_select.png' %}" alt="Salary Chart">
+  <p>上图是实时获取第n页数据的结果，通过少量数据可以与之产生对比。</p>
+
+  <h2>词云图</h2>
+  <img src="{% static 'wordcloud_select.png' %}" alt="Wordcloud">
+  <p>上图是实时获取第n页数据的结果，通过少量数据可以与之产生对比。</p>
+</body>
+</html>
