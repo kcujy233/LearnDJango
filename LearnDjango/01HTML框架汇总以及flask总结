@@ -1,0 +1,95 @@
+'''前端引入和HTML标签'''
+- 前端开发：HTML、CSS、Javascript
+- Web框架：接受请求并处理
+- MySQL数据库
+入门：基于FLASK框架搭建网站
+深入：基于Django框架
+
+关于html框架
+一、头部信息<head></head>
+1.编码：<meta charset="UTF-8">
+2.标签页的表头：<title>Title</title>
+
+二、页面信息<body></body>
+1.标题标签：<h>标题</h>
+2.内容标签
+<div>内容</div>：一部分内容占据一整行，结尾默认回车，块级标签
+<span>内容</span>：有多大占多少，可以拼接不同span标签的内容，行内标签
+3.超链接：<a href=url>点击跳转</a>
+调换其他网站需要完整url
+跳转本地网站省略自己的ip地址，输入"/show/info"
+<a href=url target="_blank">点击跳转</a>，跳转新的标签页
+4.图片标签： <img src="图片地址"/>（自闭和标签）
+显示自己的图片：
+- 在项目中创建"/static/"目录，图片要存放在此目录下
+- 在页面上引入<img src="/static/xxx.png">
+- 设置宽高 <img style="height:100px" src="">，设置一个维度会等比例缩放
+  <img style="height:100px; width=100px" src="">
+  <img style="width=10%" src="">，百分比缩放
+- 可以将img嵌套在a里实现图片超链接跳转
+5.列表标签
+<ul> '无序列表'
+    <li></li>
+    <li></li>
+    <li></li>
+</ul>
+<ol> '有序列表'
+    <li></li>
+    <li></li>
+    <li></li>
+
+</ol>
+6.表格标签
+<table boder="1"> 'boder表示加上边框'
+    <thead> '表头'
+        <tr>  <th> </th>  </tr> 'tr表示一行'，'th表示这一行某一列的内容'
+    </thead>
+    <tbody>
+        <tr>  <td> </td>  <td> </td> <td> </td></tr>
+    </tbody>
+</table>
+7.输入数据（是行内标签，不使用div或者列表ul隔开的话会堆叠在一行）
+<input type="text" >
+密码框：<input type="password" >
+选择文件：<input type="file" >
+单选框：<input type="radio" name="onlychose1"> 男
+       <input type="radio" name="onlychose1"> 女
+       需要保证“name”一样，才可以进行单选，即选项互斥
+复选框：<input type="cheetbox" >
+按钮：<input type="button" value="提交"> --普通按钮
+也是按钮：<input type="submit" value="提交"> --提交表单
+8.下拉框
+<select> --单选
+    <option>1</option>
+    <option>2</option>
+    <option>3</option>
+</select>
+<select multiple> --多选
+    <option>1</option>
+    <option>2</option>
+    <option>3</option>
+</select>
+9.多行文本
+<textarea rows="n"></textarea>
+可以在方框内回车输入多行文本
+设置rows设置默认行内高度
+
+三、浏览器请求
+浏览器向后端发送请求
+1.get请求【URL访问、表单提交】
+1）输入地址回车
+2）点击链接跳转
+向后台传入数据时，数据会拼接在网址的URL上，会拼接在“?”后面，不同数据用"&"连接
+https://www.sougou.com/web?query=安卓&age=19&name=xx
+
+2.post请求【表单提交】
+1）数据作为表单提交到后台，在请求体中
+数据不体现在URL中体现
+
+3.将数据包裹在<form></form>表单中，使用input中的submit发送提交
+form可以设置method选择请求方式，设置action设置提交地址
+input输入需要设置“name”属性
+get请求使用request.args接收数据
+post请求使用equest.form接收数据
+
+

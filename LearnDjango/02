@@ -1,0 +1,84 @@
+CSS样式
+美化HTML标签
+一、CSS应用方式
+1.在标签上应用
+在各个HTML标签应用 style
+2.在head标签中应用
+<head>
+    <style>
+        .c1{color:red;}
+    </style>
+</head>
+
+<body>
+    <h1 class='c1'></h1>
+</body>
+即在head中定义，在下方标签直接调用对应的“class”
+3.将样式写到一个文件中(静态文件一半放在static文件夹下
+<head>
+    <link rel="stylesheet" href = "链接地址.css">
+</head>
+
+二、CSS选择器
+1.类选择器
+.c1{color:red;}
+<h class="c1"></h>
+2.id选择器（id只能存在一个，不能重复）
+#c2{color:gold;}
+<h id="c1"></h>
+3.标签选择器
+li{color:pink;}
+4.属性选择器
+4.1 比如input中所有type="text"的数据
+input[type="text"]{
+    border:1px solid red;
+}加入1像素红色边框
+4.2 或者在某个类选择器中再次选择不同属性
+.v1[xx="123"]{color:pink}
+<div class="v1" xx="123">a</div>
+5.后代选择器
+找到某个类下的对应标签进行调整，比如找到某个类下的li标签，在类和标签中加入空格
+.v2 li{}
+需要注意的是，如果只有空格，会找到某个类下面所有对应的标签，不管是子标签或孙标签
+如果只想找到某个类下面的子标签，可以使用">"代替空格
+.v2>li{}
+
+三、多个样式&覆盖的问题
+<div class="c1 c2">
+同时应用多个样式
+如果某个重复，那么定义在后的会把定义在前面的覆盖
+注意是类别样式的定义顺序，不是调用的先后顺序
+如果不想让下面的样式覆盖上面的，在对应样式后加入 !important：
+.c1{color:red !important;}
+.c2{color:green;
+    height:50px}
+
+四、具体的样式
+1.高度和宽度
+像素调整
+height:300px;
+width:500px;
+宽度支持百分比调整，只有宽度支持！
+width:50%;
+高度和宽度只能调整“块级标签”，如div；无法调节“行内标签”，如span
+2.块级和行内标签
+css样式：标签-> display:inline-block
+.c1{
+    display:inline-block;
+    height:100px;
+    width:300px;
+}
+<span class="c1">aa</span>
+
+<div style="display:inline">块级标签变成行内标签
+<span style="display:block">行内标签变成块级标签
+3.字体和颜色
+color:red;
+color:#2F4F4F; RGB颜色表
+font-size:18px;
+font-width:200; 加粗
+font-family:""; 设置字体
+4.文字对齐方式
+text-align:center; 在设置长宽后的区域里水平居中
+line-height:59px; 设置为区域的高度，即可剧中，注意的是这样做必须默认文字为一行
+
