@@ -81,4 +81,14 @@ font-family:""; 设置字体
 4.文字对齐方式
 text-align:center; 在设置长宽后的区域里水平居中
 line-height:59px; 设置为区域的高度，即可剧中，注意的是这样做必须默认文字为一行
-
+5.浮动
+float:right; 将标签浮动到右侧
+如果是块级标签，浮动之后不会单独占据一整行了
+标签浮动之后会脱离文档流，在后面加入style="clear:both;"，使得将被浮动改变特性的块级标签恢复原有特性
+6.内边距
+padding-top:100px; 指的是在原内容基础上空出上面的边距部分
+padding-left:100px; 空出左边边距
+padding:100px; 上下左右全都空出边距
+7.外边距
+margin-top:100px;
+margin:0 auto; 可以将内容居中放置
