@@ -23,6 +23,8 @@ CSS样式
 1.类选择器
 .c1{color:red;}
 <h class="c1"></h>
+注意的是，类选择器在一个标签里可以应用多个类
+<h class="c1 c2 c3"></h>
 2.id选择器（id只能存在一个，不能重复）
 #c2{color:gold;}
 <h id="c1"></h>
@@ -92,3 +94,11 @@ padding:100px; 上下左右全都空出边距
 7.外边距
 margin-top:100px;
 margin:0 auto; 可以将内容居中放置
+
+五、知识点-附加
+1. hover
+.c1{}
+.c1:hover{}
+2. display
+display:none; 指的是将内容隐藏不显示
+

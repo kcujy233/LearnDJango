@@ -37,6 +37,53 @@
             height:100px;
             background-color:grey;
         }
+        .sub-header .logo{
+            float:left;
+            width:234px;
+        }
+        .sub-header .menu-list{
+            float:left;
+            line-height:100px;
+        }
+        .sub-header .menu-list a {
+            color:#333;
+            padding:0 10px;
+            text-decoration:none;
+            /*因为默认a标签链接会有下划线，通过这样可以消除下划线*/
+        }
+        .sub-header .menu-list a:hover{
+        /*增加“hover”后，表示鼠标放在该标签上后，应用如下样式*/
+            color:#ff6700;
+            padding:0 10px;
+            text-decoration:none;
+            /*因为默认a标签链接会有下划线，通过这样可以消除下划线*/
+        }
+        .sub-header .search{
+            float:right;
+            line-height:100px;
+        }
+        .news{
+            height:170px;
+            margin-top:14px;
+        }
+        .news .container{
+            width:1226px;
+            margin:0 auto;
+        }
+        .news .channel{
+            width:234px;
+            height:170px;
+            float:left;
+            background-color:brown;
+        }
+        .news .list-item{
+            width:316px;
+            float:right;
+            margin-left:14px;
+        }
+        .news .list-item img{
+            height:170px;
+        }
 
     </style>
 </head>
@@ -56,9 +103,38 @@
     </div>
     <div class="sub-header">
         <div class="container">
-            <div class="logo"></div>
-            <div class="menu-list"></div>
-            <div class="search"></div>
+            <div class="logo">
+                <a href="https://www.csdn.net/">
+<!--                    a标签为行内标签，默认无法设置高度、并且无法设置边距-->
+                    <img src="../static/1.png" style="height:56px;margin-top:22px;">
+                </a>
+            </div>
+            <div class="menu-list">
+                <a href="https://www.bilibili.com/">小米手机</a>
+                <a>红米</a>
+                <a>电源</a>
+                <a>笔记本</a>
+            </div>
+            <div class="search">
+            </div>
+            <div style="clear:both;"></div>
+        </div>
+    </div>
+    <div class="news">
+        <div class="container">
+            <div class="channel">
+
+            </div>
+            <div class="list-item">
+                <img src="../static/2.png" alt="">
+            </div>
+            <div class="list-item">
+                <img src="../static/3.png" alt="">
+            </div>
+            <div class="list-item">
+                <img src="../static/4.png" alt="">
+            </div>
+        <div style="clear:both;"></div>
         </div>
     </div>
 
