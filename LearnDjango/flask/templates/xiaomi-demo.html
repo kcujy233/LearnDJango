@@ -58,6 +58,14 @@
             text-decoration:none;
             /*因为默认a标签链接会有下划线，通过这样可以消除下划线*/
         }
+        .sub-header .menu-list a div{
+            position: absolute;
+            top: 20px;
+            display:none;
+        }
+        .sub-header .menu-list a:hover div{
+            display:block;
+        }
         .sub-header .search{
             float:right;
             line-height:100px;
@@ -110,7 +118,11 @@
                 </a>
             </div>
             <div class="menu-list">
-                <a href="https://www.bilibili.com/">小米手机</a>
+                <a href="https://www.bilibili.com/" style="position:relative;">小米手机
+                    <div>
+                        <img src="../static/1.png" style="height: 50px;width: 50px;">
+                    </div>
+                </a>
                 <a>红米</a>
                 <a>电源</a>
                 <a>笔记本</a>

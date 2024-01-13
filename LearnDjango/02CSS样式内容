@@ -96,9 +96,50 @@ margin-top:100px;
 margin:0 auto; 可以将内容居中放置
 
 五、知识点-附加
-1. hover
+1. hover (伪类)
+鼠标放在该标签后会使用hover的样式
 .c1{}
 .c1:hover{}
 2. display
 display:none; 指的是将内容隐藏不显示
+-- 可以联动hover，默认是display:none;
+-- 当鼠标覆盖上面某个内容后，使得display:block; 显示
+-- 比如某个div下面有个二维码img标签，可以使用 .c1:hover img{}
+3. after (伪类)
+在对应标签的尾部追加内容
+.c1:after{}
+-- 可以使用 .c1:after{
+                        content:"";
+                        display:block;
+                        clear:both;
+                    }
+-- 代替在对应标签尾部增加<div style="clear:both;"></div>
+4. position
+固定在页面的位置，使得在滑动时也不会改变
+1) fixed
+-- 固定在窗口的某个位置
+position:fixed;
+left:0; 固定在离页面左边的距离
+top:0; 固定在离页面上边的距离
+width:60px;
+height:60px;
+border:1px solid red;
+-- 水平居中-1
+left:50%; 需要注意的是这个指左边距离左边页面为50%
+margin-left:-200px; 若想要居中需要返回半个边框的宽度
+-- 水平居中02
+left:0;
+right:0;
+margin:0 auto;
+2) relative和absolute
+-- 进行相对的显示
+-- 在父类标签中使用 position:relative;
+-- 子类标签中使用 position:abssolute;
+-- 这样可以调整子类标签在父类标签中的相对位置
+3) z-index
+-- 如果一个页面有多个position固定标签，通过对比他们的z-index☞
+--值越大的显示在上面（覆盖下面的position标签
+5. border
+-- 边框
+颜色可以设置 transparent 透明色
 
