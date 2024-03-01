@@ -1,0 +1,22 @@
+Bootsrap
+别人已经写好的CSS文件，进行调用
+·下载Bootsrap
+·使用：
+··在页面上引入Bootsrap
+··编写HTML页面时，按照Bootsrap的规定来编写
+
+1. 尝试
+https://v3.bootcss.com/
+
+2. 导航
+
+3. 栅格系统
+https://v3.bootcss.com/css/#grid
+把整体划分为12个格，相当于表格分布
+用来适应屏幕大小，缩放情况下的布局改变
+分类：
+3.1 响应式
+.col-sm-	.col-md-	.col-lg-
+3.2 非响应式
+<div class="col-xs-9">.col-xs-9</div>
+3.3 列偏移
