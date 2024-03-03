@@ -1,2 +1,44 @@
 JavaScript
-· 编程语言，运行在浏览器上
+· 编程语言，运行在浏览器上，浏览器即JS的解释器
+· DOM和BOM
+·· 相当于编程语言内置的模块，类似于python中的re、random等模块
+· JQuery
+·· 相当于第三方模块，类似于numpy、pandas
+
+1. JavaScript
+用来实现动态效果
+1.1 代码位置
+· 在head标签里，在CSS标签下调用
+· 在body标签内部的最尾端
+<script type="text/javascript>
+</script>
+** 一般默认房子啊body内的尾端，因为html页面按顺序执行
+·· 可以出现在html代码块内部
+·· 可以放在外置文件中，在html中调用：
+<script src="">
+</script>
+1.2 注释
+· html：<!--注释内容-->
+· CSS（只能放在style代码块中）：/*注释内容*/
+· JS（只能放在script代码块中）：
+/*注释内容*/
+//注释内容
+1.3 变量
+· 定义变量
+var name = "abc";
+var name = String("abc");
+· 打印变量
+console.log(name);
+1.4 字符串类型
+var name = "abc";
+常见功能：
+· 获取字符串长度
+name.length;
+var v1 = name.length;
+· 获取字符串数据
+var v2 = name[0];
+var v2 = name.charAt(0);
+· 去除空白
+var v3 = name.trim();
+· 切片
+var v4 = name.substring(0,2);//前取后不取
