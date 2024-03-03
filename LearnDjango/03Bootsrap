@@ -26,3 +26,11 @@ https://v3.bootcss.com/css/#grid
 · 内边距
 · box-shadow 设置div模块的外部阴影。
   第一个参数为水平向右的像素，第二个参数书为垂直向下的像素，第三个参数为模糊距离
+3.5 案例：后台管理
+3.6 图标
+· 可以在 fontawesome组件中查找使用
+浮动需要清除格式：clearfix
+3.7 依赖
+BootStrap依赖JS的类库：JQuery
+· 下载JQuery，在页面上应用
+· 在页面上应用BootStrap的JS类库
