@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>跑马灯</title>
+</head>
+<body>
+<span id="txt">欢迎大家参观玩耍</span>
+<script type="text/javascript">
+    function show(){
+        //var name = "大家";
+        //获取页面数据
+        var tag = document.getElementById("txt");//获取某个变量
+        var text = tag.innerText;//获取变量的内容，即字符串
+        console.log(text);
+        //跑马灯就是拿字符调换顺序
+        var fstchar = text[0];
+        var other = text.substring(1,text.length);
+        var new_txt = other + fstchar;
+        //更新
+        tag.innerText = new_txt;
+    }
+    //JS中的定时器，每间隔t毫秒执行一次某个函数
+    setInterval(show,500);
+
+</script>
+
+</body>
+</html>
