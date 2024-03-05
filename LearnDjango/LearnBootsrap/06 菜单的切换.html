@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>菜单切换</title>
+    <style>
+        .menus{
+            width:200px;
+            height:800px;
+            border:1px solid blue;
+        }
+        .menus .header{
+            background-color:gold;
+            padding:10px 5px;
+            /*鼠标放上去变小手*/
+            cursor:pointer;
+        }
+        .menus .content span{
+            display:block;
+            padding:5px 5px;
+            border-bottom:1px dotted #ddd
+        }
+        .hide{
+            display:none;
+        }
+
+    </style>
+</head>
+<body>
+<h1 id="head1">aaa</h1>
+<div class="menus">
+    <div class="item">
+        <div class="header" onclick="clickme(this)">
+            上海
+        </div>
+        <div class="content hide">
+            <span>pudong</span>
+            <span>jiading</span>
+            <span>putuo</span>
+        </div>
+        <div class="header" onclick="clickme(this)">
+            北京
+        </div>
+        <div class="content hide">
+            <span>海淀</span>
+            <span>朝阳</span>
+            <span>昌平</span>
+        </div>
+
+
+    </div>
+
+</div>
+
+<script src="static/js/JQuary-3.7.1.js"></script>
+<script type="text/javascript">
+    $("#head1").text("bbb");
+
+    function clickme(self){
+        var wtherhide = $(self).next().hasClass("hide");
+        if(wtherhide){
+            $(self).next().removeClass("hide");
+            //同时最多只有一个展开
+            $(self).next().siblings(".content").addClass("hide");
+        }
+        else{
+            $(self).next().addClass("hide");
+        }
+
+    }
+</script>
+</body>
+</html>

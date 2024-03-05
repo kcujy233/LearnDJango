@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>按钮绑定事件</title>
+</head>
+<body>
+<input type="text" placeholder="请输入内容" id="txt">
+<input type="button" value="点击添加" onclick="addCity()">
+<ul id="city">
+
+</ul>
+<script type="text/javascript">
+    function addCity(){
+        var newtag = document.createElement("li");
+        var content = document.getElementById("txt");
+        //注意input中输入的结果用value获取，不用innerText
+        if(content.value != ""){
+            newtag.innerText = content.value;
+            //输入完成后，将input框内容置空
+            content.value = "";
+            var partag = document.getElementById("city");
+            partag.appendChild(newtag);
+        }
+        else{
+            alert("输入不能为空");
+        }
+    }
+</script>
+</body>
+</html>

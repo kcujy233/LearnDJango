@@ -42,3 +42,90 @@ var v2 = name.charAt(0);
 var v3 = name.trim();
 · 切片
 var v4 = name.substring(0,2);//前取后不取
+1.5 数组(类似python中的列表)
+var v1 = [1,2,3];
+var v2 = Array[1,2,3]
+· 索引获取或者设置值
+v1[1]
+v2[0] = "name";
+v2.push("人之初");//尾部追加值 [1,2,3,"人之初"]
+v2.unshift("人之初");//首部追加值
+v2.splice(1,0,"人之初");//在指定位置追加结果，元素1表示指定位置，元素2表示削掉的数目，元素3为追加值
+
+v1.pop()//尾部删除
+v1.shift()//头部删除
+v1.splice(2,1);//在指定位置删除元素，元素1表示指定位置，元素2表示削掉的数目
+· 循环
+for(var idx in v1){
+    //idx = 0/1/2/3/
+    data = v1[idx];
+}
+需要注意的是循环的变量idx循环的不是数组里的元素，而是对应的索引
+1.6 对象（类似python中的字典）
+info = {
+    "name":"abc",
+    "age" = 18
+}
+· 调用方式
+·· info["name"]
+·· info.name
+· 循环
+for(var key in info){
+//循环的为“键”
+}
+1.7 条件语句
+if(i==1){}
+else if(i==2){}
+else{}
+1.8 函数
+function func(){}
+
+2. DOM（大部分效果实现使用JQuery实现）
+基于DOM模块可以对HTML的标签进行操作
+· 根据id获取某个标签
+var v1 = document.getElementById("id");
+·· 获取文本
+v1.innerText;
+· 创建标签
+var v2 = document.createElement("div");
+·· 写入标签内容
+v2.innerText = "abc";
+· 动态更新数据，类似于python写入列表
+v3.appendChild(value);
+2.1 事件的绑定
+比如按钮的触发，可以使用“onclick”调用JS的函数来实现触发
+
+3. JQuery
+是一个JS的第三方模块
+可以根据JQuery自己开发功能
+可以依赖JQuery实现部分效果
+3.1 快速上手
+3.2 寻找标签
+· ID选择器
+$("#id")
+· 样式选择器
+$(".class")
+· 标签选择器
+$("h1")
+· 层级选择器
+$(".c1 .c2 a")
+· 多个选择器
+$("#id,.c1,span")
+· 属性选择器
+$("input[name='n1']")
+3.3 间接寻找标签
+· 找到上一个的同类标签的内容
+$('#id').prev()
+$('#id').prev().prev()
+· 找到下一个同类标签的内容
+$('#id').next()
+· 找到所有同类标签的内容
+$('#id').siblings()
+· 找到父类标签
+$('#id').parent()
+· 找到子类标签
+$('#id').children()//所有的儿子类标签
+$('#id').children(".c1")//寻找儿子类标签中特定的样式
+· 找到子孙的标签
+$('#id').find("div")//所有下级的div标签的内容
+
