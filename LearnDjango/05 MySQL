@@ -1,0 +1,119 @@
+1. 运行MySQL
+· 打开终端（管理员模式）
+· 运行服务
+net start mysql5731
+· 运行程序
+mysql -u root -p
+· 结束服务
+net stop mysql5731
+· 忘记密码
+- 关闭服务
+- 修改配置文件
+在my.ini文件中增加：skip-grant-tables=1
+- 重新启动，进入无账号模式
+mysql -u root -p
+- 重新设置密码
+use mysql;
+update user set authentication_string=password('new_password'),password_last_changed=now() where user='root';
+- 退出服务
+- 重新修改配置文件，重新启动mysql
+在my.ini文件中删除增加的内容
+
+2. MySQL指令
+数据库--数据表 == 文件夹--文件
+2.1 数据库管理
+· 查看已有的数据库
+show databases;
+· 创建数据库
+create database database_name;
+create database 数据库名称 DEFAULT CHARSET utf8 COLLATE utf8_general_ci;
+· 删除数据库
+drop databases databases_name;
+· 进入数据库
+use database_name;
+· 查看数据库下所有的数据表
+show tables;
+2.2 数据表的管理
+· 创建表
+create table table_name(
+    列名称 类型 primary key,//主键（不允许为空，不允许重复）
+    列名称 类型 not null, //表示这一列不许为空，后续往表内插入数据时，若没有数据则报错
+    列名称 类型 default 3 //若不传递参数则默认值为3
+)default charset=utf8;
+·· create table tb1(
+    id int,
+    name varchar(16), //输入的值每个都是16个字符
+    age int
+   )default charset=utf8;
+·· 主键一般表示当前行的数据编号；
+·· auto_increment primary key //主键并自动增加，内部维护，不需要额外传递了
+·· 一般id设置类型为：int not null auto_increment primary key
+· 展示表内列数以及细节信息
+desc table_name;
+· 删除表
+drop table table_name;
+· 插入数据
+insert into table_name(列名称1,列名称2) values(1000,18);
+insert into table_name(列名称1,列名称2) values(1000,18),(2000,28);
+· 查看表中数据
+select * from table_name;
+· 常用的数据类型
+·· int：（2^32）
+·· tinyint：有符号-128-127；无符号0-255（2^8）
+-- 默认有符号，无符号：tinyint unsigned;超出范围会报错
+·· bigint：（2^64）
+·· float
+·· double
+·· decimal //小数一般使用这种类型，较精准
+-- decimal(m,d)//m最大值为65，d最大值为30
+-- decimal(8,2)//数字总个数为8位，小数点后2位，小数点前为8-2=6位
+·· char//定长字符串,查询速度快
+-- char(10)//固定用10个字符存储，数据不到10个字符也会按照10个字符存储
+·· varchar //变长字符串
+-- varchar(10)//真实有多长就按照多长进行存储
+-- 最常用varchar(255)
+·· text //一般用来存储文章或者新闻
+-- text数据类型用于保存变长的大字符串，可以最多到65535（2^16-1）个字符
+·· mediumtext//最多到2^24-1
+·· longtext//最多到2^32-1
+·· datetime//存储时间，年月日时分秒
+-- YYYY-MM-DD HH:MM:SS
+·· date//存储年月日
+-- YYYY-MM-DD
+
+3. 数据库项目流程
+3.1 创建数据库以及表结构
+通过上述方法在连接器中对mysql服务创建
+3.1 数据行操作
+· 新增数据
+insert into table_name(列名称1,列名称2) values(1000,18);
+insert into table_name(列名称1,列名称2) values(1000,18),(2000,28);
+· 删除数据
+delete from table_name;//删除所有数据
+delete from table_name where 条件;//删除表内符合条件的数据
+·· delete from tb2 where id=3;//在这里一个等号就表示比较了
+·· delete from tb2 where id in (1,5);//删除id在1-5范围内的数据
+·· delete from tb2 where id=3 and name='abc';//多重条件
+·· delete from tb2 where id>=3 or name='abc';//多重条件
+· 修改数据
+update table_name set 列=新的值;
+update table_name set 列=新的值 where 条件;//更新符合条件的数据
+·· update tb2 set age=age+10 where id>5;//可以在修改数据内直接执行简单指令
+· 查询数据
+select * from table_name;//查询表中的全部数据
+select 列名称 from table_name where 条件;//查询某一列的数据
+
+3.2 通过程序实现数据库的维护
+
+4 案例：员工管理
+4.1 使用MySQL工具创建数据库
+· 创建数据库：unicom
+· 创建数据表：admin
+·· id，username，passwd，real_name，mobile
+4.2 基于python代码实现
+· 添加用户
+· 查看用户
+· 更新用户
+5 案例：Flask+MySQL
+
+
