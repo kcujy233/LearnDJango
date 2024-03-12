@@ -18,7 +18,7 @@ class UserInfo(models.Model):
     salary = models.DecimalField(verbose_name='账户余额',
                                  max_digits=10, decimal_places=2,
                                  default=0)# 最大位数10，小数2位，默认账户余额为0
-    create_time = models.DateTimeField(verbose_name='入职时间')
+    create_time = models.DateField(verbose_name='入职时间')
     # 建立某个员工对应的部门
     # 1. 存ID？存名称？
     # 根据数据库理论知识，应该存储ID，节省存储开销

@@ -1,7 +1,6 @@
 from django.shortcuts import render, redirect
 from APP_manage import models
 
-
 # Create your views here.
 def user_list(request):
     '''用户管理'''
@@ -21,7 +20,6 @@ def user_list(request):
 
     return render(request, "user_list.html", {"user_info": user_info})
 
-
 def user_add(request):
     '''添加用户'''
     if request.method == "GET":
@@ -39,7 +37,6 @@ def user_add(request):
     models.UserInfo.objects.create(name=name, passwd=passwd, age=age, salary=salary, create_time=create_time,
                                    gender=gender, departID_id=departID)
     return redirect("/user/list/")
-
 
 from django import forms
 class UserModelForm(forms.ModelForm):
@@ -69,8 +66,25 @@ def user_add_modelform(request):
     # 校验失败
     return render(request, "user_add_modelform.html", {"form": form})
 
+def user_edit(request, nid):
+    '''用户编辑'''
+    row_object = models.UserInfo.objects.filter(id=nid).first()
+    if request.method == 'GET':
+        # 根据id去数据库获取数据
+        form = UserModelForm(instance=row_object)
+        return render(request, "user_edit.html", {"form": form})
+    form = UserModelForm(data=request.POST, instance=row_object)
+    if form.is_valid():
+        print(form.cleaned_data)
+        form.save()
+        return redirect("/user/list/")
+    # 校验失败
+    return render(request, "user_edit.html", {"form": form})
 
-
+def user_delete(request):
+    nid = request.GET.get('nid')
+    models.UserInfo.objects.filter(id=nid).delete()
+    return redirect("/user/list/")
 
 def depart_list(request):
     '''部门管理'''

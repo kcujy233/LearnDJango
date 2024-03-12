@@ -24,6 +24,8 @@ urlpatterns = [
     path("user/list/", views.user_list),
     path("user/add/", views.user_add),
     path("user/add/modelform/", views.user_add_modelform),
+    path("user/<int:nid>/edit/", views.user_edit),
+    path("user/delete/", views.user_delete),
     # 部门管理
     path("depart/list/", views.depart_list),
     path("depart/add/", views.depart_add),

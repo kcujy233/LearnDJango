@@ -278,6 +278,7 @@ models.Department.objects.filter(id=nid).update(title=title)
 · 创建url
 · 创建views视图函数
 · 创建html//模板继承
+· 添加页面
 *** 时间的规范 ***
 python:obj.create_time.strftime("%Y-%m-%d")
 DJango:{{obj.create_time|date:"Y-m-d H:i:s"}}
@@ -293,8 +294,19 @@ DJango:{{obj.departID.title}}
 工作量大，页面上每个字段都要进行重复填写
 如果有管理数据，需要检索数据表，手动获取并循环展示
 所以需要使用组件，跳转** 9. Form和ModelForm **
-
-
+· 编辑页面
+·· 传递id
+·· 显示默认数据
+找到某一行的数据，传给ModelForm的instance参数，自动打印在value值上
+    row_object = models.UserInfo.objects.filter(id=nid).first()
+    form = UserModelForm(instance=row_object)
+·· 提交时进行校验
+if form.is_valid():
+·· 数据表更新
+form = UserModelForm(data=request.POST, instance=row_object)
+form.save()
+//可以通过form.instance.字段名=NEW_VALUE在用户输入界面之外额外输入值
+** 所以instance相当于指定数据表中的某一行（对象） **
 
 
 8. 模板的继承
@@ -309,6 +321,7 @@ DJango:{{obj.departID.title}}
 {% endblock %}
 
 9. Form和ModelForm
+（针对数据库用ModelForm，针对其他情况用Form）
 9.1 Form
 1）创建类并继承(views.py)
 class MyForm(Form):
