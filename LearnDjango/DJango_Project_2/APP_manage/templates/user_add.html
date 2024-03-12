@@ -1,0 +1,52 @@
+{% extends 'layout.html' %}
+{% block title %}
+<title>用户新增</title>
+{% endblock %}
+{% block content %}
+<div class="panel panel-default ">
+    <div class="panel-heading">
+        <h3 class="panel-title">添加用户</h3>
+    </div>
+    <div class="panel-body">
+        <form method="post">
+            {% csrf_token %}
+            <div class="form-group">
+                <label>姓名</label>
+                <input type="text" class="form-control" name="name" placeholder="用户姓名">
+            </div>
+            <div class="form-group">
+                <label>密码</label>
+                <input type="text" class="form-control" name="passwd" placeholder="用户密码">
+            </div>
+            <div class="form-group">
+                <label>年龄</label>
+                <input type="text" class="form-control" name="age" placeholder="年龄">
+            </div>
+            <div class="form-group">
+                <label>余额</label>
+                <input type="text" class="form-control" name="salary" placeholder="余额">
+            </div>
+            <div class="form-group">
+                <label>创建时间</label>
+                <input type="text" class="form-control" name="create_time" placeholder="创建时间">
+            </div>
+            <div class="form-group">
+                <label>性别</label>
+                <select name="gender" class="form-control">
+                    <option value="1">male</option>
+                    <option value="2">female</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label>部门</label>
+                <select name="departID" class="form-control">
+                    {% for item in depart_list%}
+                        <option value="{{item.id}}">{{item.title}}</option>
+                    {% endfor%}
+                </select>
+            </div>
+            <button type="submit" class="btn btn-default">保 存</button>
+        </form>
+    </div>
+</div>
+{% endblock %}

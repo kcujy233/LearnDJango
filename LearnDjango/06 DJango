@@ -174,3 +174,226 @@ Table.objects.filter(id=3).update(age=19)//
 ·· GET看到页面
 ·· POST提交请求->写入数据库
 3. 删除用户
+
+--- 案例：员工管理系统 ---
+1. 创建项目
+django-admin.exe startproject Project_Name
+2. 创建APP
+cd Project_Name
+python manage.py startapp APP_name
+3. APP注册
+在settings.py的INSTALLED_APPS的列表里添加APP内容
+添加的内容为”APP_NAME.apps.APP_NAMEConfig“
+4. 设计表结构
+在models.py中创建类，创建多个类，表示多个数据表
+class UserInfo(models.Model):
+*** 需要考虑联表的情况 ***
+*** 需要考虑约束的情况 ***
+5. 在MySQL中生成表
+· 工具链接生成数据库
+create database django_mysql_2 DEFAULT CHARSET utf8 COLLATE utf8_general_ci;
+use django_mysql_2
+· 修改配置文件settings.py，链接mysql
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.mysql',  # 默认
+        'NAME': 'django_mysql_2',  # 连接的数据库  #一定要存在的数据库名
+        'HOST': '127.0.0.1',  # mysql的ip地址
+        'PORT': 3306,  # mysql的端口
+        'USER': 'root',  # mysql的用户名
+        'PASSWORD': ''  # mysql的密码
+    }
+}
+· DJango命令生成表
+python .\manage.py makemigrations
+python .\manage.py migrate
+6. 静态文件管理
+创建相关目录
+7. 部门管理
+-- 体验，最原始方法
+-- DJango中提供Form和ModelForm组件
+7.1 部门列表
+· 创建url
+· 创建views视图函数
+· 创建html
+·· 链接CSS组件，bootstrap
+{% load static %}
+<link rel="stylesheet" href="{% static 'plugins/bootstrap-3.4.1/css/bootstrap.min.css' %}">
+<script src="{% static 'js/jquery-3.7.1.js' %}"></script>
+<script src="{% static 'plugins/bootstrap-3.4.1/js/bootstrap.min.js' %}"></script>
+·· 找到对应模板
+· 连接数据库读取文件，获取部门列表，在views.py文件中导入
+queryset = models.Department.objects.all()
+· 将数据导入DJango中
+{"queryset":queryset}
+{% for obj in queryset %}
+    <tr>
+        <th>{{obj.id}}</th>
+        <td>{{obj.title}}</td>
+        <td>
+            <a class="btn btn-primary btn-xs" href="">编辑</a>
+            <a class="btn btn-danger btn-xs" href="">删除</a>
+        </td>
+    </tr>
+{% endfor %}
+· 添加页面
+·· 创建url
+·· 编写视图函数
+    if request.method == "GET":
+        return render(request, 'depart_add.html')
+·· 创建表单
+<form method="post">
+    {% csrf_token %}
+
+    <button type="submit" class="btn btn-default">保 存</button>
+</form>
+·· 获取数据
+title = request.POST.get("title")
+models.Department.objects.create(title=title)
+· 删除数据
+·· 创建url
+·· 编写视图函数
+nid = request.GET.get('nid')
+models.Department.objects.filter(id=nid).delete()
+·· 编写HTML链接
+href="/depart/delete/?nid={{obj.id}}"
+·· 重定向
+return redirect("/depart/list/")
+· 修改数据
+·· 创建url，可以使用正则表达式
+path("depart/<int:nid>/edit/", views.depart_edit),
+·· 编写视图函数
+def depart_edit(request, nid):
+    total_info = models.Department.objects.filter(id=nid).first()
+    title = total_info.title
+    return render(request, "depart_edit.html", {"title":title})
+·· 编写HTML链接
+href="/depart/{{obj.id}}/edit/"
+value="{{ title }}"
+·· 回传数据库
+title = request.POST.get("title")
+models.Department.objects.filter(id=nid).update(title=title)
+
+7.2 用户列表
+· 创建url
+· 创建views视图函数
+· 创建html//模板继承
+*** 时间的规范 ***
+python:obj.create_time.strftime("%Y-%m-%d")
+DJango:{{obj.create_time|date:"Y-m-d H:i:s"}}
+*** 元组链接的规范 ***
+python:obj.get_gender_display()
+DJango:{{obj.get_gender_display}}
+*** 数据表链接的规范 ***
+python:obj.departID.title
+DJango:{{obj.departID.title}}
+** 使用原始方法的弊端 **
+当数据列表很大，原始方法依次传入的时候，数据校验工作量很大，即需要针对每个字段进行如“非空判断”
+并且该方法没有进行错误提示
+工作量大，页面上每个字段都要进行重复填写
+如果有管理数据，需要检索数据表，手动获取并循环展示
+所以需要使用组件，跳转** 9. Form和ModelForm **
+
+
+
+
+8. 模板的继承
+编写一个模板HTML：layout.html
+在某个div内增加如下内容
+{% block BLOCK_NAME %}{% endblock %}
+其他HTML页面可以直接继承模板，编写的内容相当于在上述框格内部
+子模板：index.html中直接写如下内容
+{% extends 'layout.html' %}
+{% block BLOCK_NAME %}
+
+{% endblock %}
+
+9. Form和ModelForm
+9.1 Form
+1）创建类并继承(views.py)
+class MyForm(Form):
+    user=forms.CharField(widget=forms.Input)//定义格式，在HTML展示为Input框
+    pwd = forms.CharField(widget=forms.Input)
+    email = forms.CharField(widget=forms.Input)
+
+def user_add(request):
+    if request.method=="GET":
+        form = MyForm()//实例化一个对象
+        return render(request, "user_add.html", {"form":form})
+2）辅助生成input表单（HTML）
+<form method="post">
+    {{form.user}}
+    {{form.pwd}}
+    {{form.email}}
+</form>
+或
+<form method="post">
+    {% for field in form %}
+        {{field}}
+    {% endfor %}
+</form>
+
+9.2 ModelForm
+1）models.py
+class UserInfo(models.Model):
+    '''员工表'''
+    name = models.CharField(verbose_name='姓名', max_length=16)
+    passwd = models.CharField(verbose_name='密码', max_length=64)
+    age = models.IntegerField(verbose_name='年龄')
+    salary = models.DecimalField(verbose_name='账户余额',
+                                 max_digits=10, decimal_places=2,
+                                 default=0)# 最大位数10，小数2位，默认账户余额为0
+    create_time = models.DateTimeField(verbose_name='入职时间')
+    departID = models.ForeignKey(to='Department', to_field='id',
+                                 on_delete=models.CASCADE)
+    gender_choices=(
+        (1, "male"),
+        (2, "female"),
+    )
+    gender = models.SmallIntegerField(verbose_name='性别', choices=gender_choices)
+2）views.py
+class MyModelForm(ModelForm):
+    class Meta:
+        model = UserInfo//直接继承之前的”员工表“的类
+        fields = ["name", "passwd"]//自定义需要的字段
+3）HTML
+{% csrf_token %}
+{{form.name.label}}:{{form.name}}
+{{form.passwd.label}}:{{form.passwd}}
+{{form.age.label}}:{{form.age}}
+或
+{% for field in form %}
+    {{field.label}}:{{field}}
+{% endfor %}
+** 由于使用departID时输出结果的问题，针对Department类进行重构 **
+def __str__(self):
+    return self.title
+4）继承样式
+在views.py中编写：
+class UserModelForm(forms.ModelForm):
+    class Meta:
+        model = models.UserInfo
+        fields = ["name", "passwd", "age", "salary", "create_time", "gender", "departID"]
+        widgets = {
+            "name":forms.TextInput(attrs={"class":"form-control"}),
+            "passwd":forms.PasswordInput(attrs={"class":"form-control"})
+        }
+或者
+def __init__(self, *args, **kwargs):
+    super().__init__(*args, **kwargs)
+    for name, field in self.fields.items():
+        print(name, field)
+        field.widget.attrs = {"class": "form-control",
+                              "placeholder":field.label}
+5）数据验证并保存
+· 数据验证
+form = UserModelForm(data=request.POST)
+if form.is_valid():
+    print(form.cleaned_data)
+else:
+    print(form.errors)
+· 数据提交
+form.save()
+· 错误信息
+{{field.errors.0}}
+* 如果要调整显示中文，在settings.py文件中，更改LANGUAGE_CODE = "zh-hans" *
